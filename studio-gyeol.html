@@ -1,0 +1,575 @@
+<title>스튜디오 결</title>
+<meta name="description" content="브랜드의 결을 살리는 1인 디자인 스튜디오, 결의 소개 페이지 샘플">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<style>
+  :root{
+    --paper:#F1EFE7;
+    --paper-alt:#E7E2D3;
+    --card:#FBFAF4;
+    --ink:#23241C;
+    --ink-soft:#615F50;
+    --indigo:#33517C;
+    --indigo-deep:#22364F;
+    --line:#C7BEA6;
+    --line-soft:#D9D2BC;
+    --danger:#A1432E;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1A1B15;
+      --paper-alt:#212217;
+      --card:#20211A;
+      --ink:#ECE8DA;
+      --ink-soft:#AFA98F;
+      --indigo:#8FAEDA;
+      --indigo-deep:#BBD0EE;
+      --line:#3C3B2C;
+      --line-soft:#2D2D21;
+      --danger:#E2917C;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1A1B15;
+    --paper-alt:#212217;
+    --card:#20211A;
+    --ink:#ECE8DA;
+    --ink-soft:#AFA98F;
+    --indigo:#8FAEDA;
+    --indigo-deep:#BBD0EE;
+    --line:#3C3B2C;
+    --line-soft:#2D2D21;
+    --danger:#E2917C;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Gowun Dodum","Noto Sans KR",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Gowun Batang","Noto Serif KR",serif;
+    font-weight:700;
+    text-wrap:balance;
+    margin:0;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+
+  /* nav */
+  .nav{
+    position:sticky;top:0;z-index:10;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:16px;padding-bottom:16px;
+  }
+  .nav .mark{
+    font-family:"Gowun Batang",serif;font-weight:700;font-size:1.15rem;
+    letter-spacing:.02em;
+  }
+  .nav ul{list-style:none;display:flex;gap:28px;margin:0;padding:0;}
+  .nav a{
+    text-decoration:none;font-size:.92rem;color:var(--ink-soft);
+    transition:color .15s ease;
+  }
+  .nav a:hover,.nav a:focus-visible{color:var(--indigo);}
+  .nav a:focus-visible{outline:2px solid var(--indigo);outline-offset:4px;border-radius:2px;}
+
+  /* hero */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(
+      100deg,
+      transparent 0px,
+      transparent 26px,
+      var(--line) 27px,
+      transparent 28px
+    );
+    opacity:.35;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    padding:88px 0 76px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--indigo);margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";width:22px;height:1px;background:var(--indigo);
+  }
+  .hero h1{
+    font-size:clamp(2.1rem,4.6vw,3.4rem);
+    line-height:1.28;
+    max-width:14ch;
+  }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:56ch;
+    font-size:1.06rem;
+    color:var(--ink-soft);
+  }
+  .hero .cta{
+    margin-top:34px;
+    display:inline-flex;gap:14px;flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:12px 24px;
+    border-radius:2px;
+    font-size:.92rem;
+    text-decoration:none;
+    transition:background .15s ease,color .15s ease,border-color .15s ease;
+  }
+  .btn-primary{
+    background:var(--indigo);color:var(--paper);
+  }
+  .btn-primary:hover{background:var(--indigo-deep);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--indigo);color:var(--indigo);}
+
+  section{padding:76px 0;}
+  .section-head{
+    display:flex;align-items:baseline;gap:16px;
+    margin-bottom:44px;
+    border-bottom:1px solid var(--line-soft);
+    padding-bottom:20px;
+  }
+  .section-head .no{
+    font-family:"Gowun Batang",serif;
+    color:var(--indigo);font-size:.9rem;letter-spacing:.08em;
+  }
+  .section-head h2{font-size:1.6rem;}
+
+  /* about */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:56px;
+  }
+  .about-grid p{color:var(--ink-soft);max-width:60ch;}
+  .about-grid p + p{margin-top:16px;}
+  .facts{
+    display:flex;flex-direction:column;gap:0;
+    border-top:1px solid var(--line-soft);
+  }
+  .facts dl{
+    display:flex;justify-content:space-between;gap:16px;
+    margin:0;padding:14px 0;
+    border-bottom:1px solid var(--line-soft);
+    font-size:.94rem;
+  }
+  .facts dt{color:var(--ink-soft);}
+  .facts dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;}
+
+  /* work */
+  .work-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line-soft);
+    padding:28px 24px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .card .tag{
+    font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--indigo);
+  }
+  .card h3{font-size:1.15rem;font-weight:400;}
+  .card p{color:var(--ink-soft);font-size:.94rem;margin:0;flex:1;}
+  .card .meta{
+    font-size:.82rem;color:var(--ink-soft);
+    padding-top:12px;border-top:1px solid var(--line-soft);
+    display:flex;justify-content:space-between;
+  }
+
+  /* process */
+  .process-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    border-top:1px solid var(--line-soft);
+    border-left:1px solid var(--line-soft);
+  }
+  .process-step{
+    padding:26px 22px;
+    border-right:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .process-step .num{
+    font-family:"Gowun Batang",serif;
+    color:var(--indigo);font-size:1.3rem;
+    display:block;margin-bottom:10px;
+  }
+  .process-step h3{font-size:1rem;font-weight:400;margin-bottom:6px;}
+  .process-step p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+
+  footer{
+    border-top:1px solid var(--line-soft);
+    background:var(--paper-alt);
+  }
+  .footer-inner{
+    padding:56px 0 36px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:56px;
+  }
+  .footer-inner h2{font-size:1.5rem;max-width:14ch;}
+  .contact-list{list-style:none;margin:0;padding:0;}
+  .contact-list a{
+    text-decoration:none;color:var(--ink-soft);font-size:.95rem;
+  }
+  .contact-list a:hover{color:var(--indigo);}
+  .contact-list li + li{margin-top:8px;}
+  .contact-form{
+    margin-top:26px;
+    display:flex;flex-direction:column;gap:16px;
+    max-width:420px;
+  }
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field label{
+    font-size:.82rem;color:var(--ink-soft);
+  }
+  .field input,.field textarea{
+    font:inherit;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:10px 12px;
+    resize:vertical;
+  }
+  .field input:focus-visible,.field textarea:focus-visible{
+    outline:2px solid var(--indigo);outline-offset:2px;
+  }
+  .contact-form .btn{
+    align-self:flex-start;
+    border:none;cursor:pointer;
+  }
+  .contact-form .btn:disabled{opacity:.5;cursor:not-allowed;}
+  .form-status{
+    margin:0;min-height:1.4em;
+    font-size:.86rem;color:var(--indigo);
+  }
+  .form-status.is-error{color:var(--danger);}
+  .info-label{
+    font-size:.82rem;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.1em;
+    margin:0 0 14px;
+  }
+
+  /* guestbook */
+  .guestbook-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+  .guestbook-intro{color:var(--ink-soft);margin:0 0 20px;max-width:42ch;}
+  .guestbook-list{
+    list-style:none;margin:0;padding:0;
+    max-height:420px;overflow-y:auto;
+    border-top:1px solid var(--line-soft);
+  }
+  .guestbook-list li{padding:16px 4px;border-bottom:1px solid var(--line-soft);}
+  .guestbook-list .entry-head{
+    display:flex;justify-content:space-between;gap:12px;
+    font-size:.86rem;margin-bottom:6px;
+  }
+  .guestbook-list .entry-name{font-family:"Gowun Batang",serif;color:var(--ink);}
+  .guestbook-list .entry-date{color:var(--ink-soft);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .guestbook-list p{margin:0;color:var(--ink-soft);font-size:.92rem;}
+  .guestbook-empty{color:var(--ink-soft);font-size:.92rem;padding:16px 4px !important;border-bottom:none !important;}
+
+  .fine{
+    margin-top:48px;
+    padding-top:20px;
+    border-top:1px solid var(--line-soft);
+    font-size:.8rem;color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:1fr;}
+    .process-row{grid-template-columns:1fr;}
+    .nav ul{gap:16px;}
+    .footer-inner{grid-template-columns:1fr;}
+    .guestbook-layout{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;}
+  }
+</style>
+
+<nav class="nav">
+  <div class="wrap">
+    <span class="mark">결</span>
+    <ul>
+      <li><a href="#about">소개</a></li>
+      <li><a href="#work">작업</a></li>
+      <li><a href="#process">프로세스</a></li>
+      <li><a href="#guestbook">방명록</a></li>
+      <li><a href="#contact">문의</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">STUDIO 결 — BRAND &amp; GRAPHIC DESIGN</span>
+    <h1>모든 브랜드에는<br>고유한 결이 있습니다</h1>
+    <p class="lede">
+      결은 브랜드 아이덴티티, 편집, 공간 사이니지를 다루는 1인 디자인 스튜디오입니다.
+      나뭇결과 천의 결처럼, 브랜드가 이미 가지고 있는 방향과 무늬를 찾아 다듬는 작업을 합니다.
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#work">작업 보기</a>
+      <a class="btn btn-ghost" href="#contact">프로젝트 문의</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="no">01</span>
+      <h2>소개</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          결은 디자이너 한 명이 처음부터 끝까지 프로젝트를 책임지는 작업 방식을 씁니다.
+          클라이언트의 이야기를 듣는 것에서 시작해, 로고와 색, 타이포그래피뿐 아니라
+          간판과 안내 사인 같은 실제 공간까지 하나의 결로 이어지도록 설계합니다.
+        </p>
+        <p>
+          작은 브랜드일수록 결이 잘 보입니다. 그 결을 지우고 새로 칠하기보다,
+          원래 있던 결을 따라 다듬는 쪽을 택합니다.
+        </p>
+      </div>
+      <dl class="facts">
+        <div><dt>설립</dt><dd>2021</dd></div>
+        <div><dt>위치</dt><dd>서울 합정</dd></div>
+        <div><dt>작업 분야</dt><dd>BI · 편집 · 사이니지</dd></div>
+        <div><dt>연간 프로젝트</dt><dd>8–10건</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="background:var(--paper-alt);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="no">02</span>
+      <h2>작업 (예시)</h2>
+    </div>
+    <div class="work-grid">
+      <article class="card">
+        <span class="tag">Brand Identity</span>
+        <h3>목련방 — 한옥 게스트하우스</h3>
+        <p>계절마다 피고 지는 목련을 모티프로 로고와 객실 사인, 안내 책자를 설계했습니다.</p>
+        <div class="meta"><span>2024</span><span>BI · 사이니지</span></div>
+      </article>
+      <article class="card">
+        <span class="tag">Editorial</span>
+        <h3>계간 「토양」</h3>
+        <p>지역 농가를 소개하는 계간지의 판형과 그리드, 표지 시스템을 디자인했습니다.</p>
+        <div class="meta"><span>2023</span><span>편집 디자인</span></div>
+      </article>
+      <article class="card">
+        <span class="tag">Signage</span>
+        <h3>공방 나무결</h3>
+        <p>목공방의 브랜드 마크를 나무 단면의 결을 딴 패턴으로 만들고 외부 간판에 적용했습니다.</p>
+        <div class="meta"><span>2022</span><span>BI · 공간</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="no">03</span>
+      <h2>작업 프로세스</h2>
+    </div>
+    <div class="process-row">
+      <div class="process-step">
+        <span class="num">01</span>
+        <h3>리서치</h3>
+        <p>브랜드의 역사와 사람, 공간을 관찰하며 이미 있는 결을 찾습니다.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">02</span>
+        <h3>컨셉</h3>
+        <p>찾은 결을 하나의 방향과 언어로 정리합니다.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">03</span>
+        <h3>디자인</h3>
+        <p>로고, 색, 타이포그래피, 인쇄물을 구체적인 결과물로 만듭니다.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">04</span>
+        <h3>적용</h3>
+        <p>사인, 패키지, 공간 등 실제 쓰이는 곳까지 결이 이어지도록 함께 점검합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guestbook" style="background:var(--paper-alt);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="no">04</span>
+      <h2>방명록</h2>
+    </div>
+    <div class="guestbook-layout">
+      <div>
+        <p class="guestbook-intro">다녀가신 흔적을 남겨주세요. 짧은 인사도 좋습니다.</p>
+        <form id="guestbook-form" class="contact-form" novalidate>
+          <div class="field">
+            <label for="g-name">이름</label>
+            <input id="g-name" name="name" type="text" autocomplete="name" maxlength="40" required>
+          </div>
+          <div class="field">
+            <label for="g-message">메시지</label>
+            <textarea id="g-message" name="message" rows="3" maxlength="300" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">방명록에 남기기</button>
+          <p class="form-status" id="guestbook-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div>
+        <p class="info-label">먼저 다녀간 분들</p>
+        <ul class="guestbook-list" id="guestbook-list">
+          <li class="guestbook-empty">불러오는 중...</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-inner">
+    <div>
+      <h2>다음 프로젝트의<br>결을 함께 찾아볼까요</h2>
+    </div>
+    <div>
+      <p class="info-label">연락 방법</p>
+      <ul class="contact-list">
+        <li><a href="mailto:hello@studio-gyeol.example">hello@studio-gyeol.example</a></li>
+        <li><a href="#">Instagram @studio.gyeol</a></li>
+        <li>서울시 마포구 합정동</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="fine">
+      <span>© 2026 Studio 결. 이 페이지는 샘플 템플릿입니다 — 문구와 이미지를 자유롭게 교체해 사용하세요.</span>
+      <span>Fonts: Gowun Batang / Gowun Dodum</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  var SUPABASE_URL = "https://zzpfbcyugrqvizwrsqws.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_gJJmJiD7C7ePfv9E7ezJgA_2oHK1KEO";
+  var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  var form = document.getElementById('guestbook-form');
+  var status = document.getElementById('guestbook-status');
+  var listEl = document.getElementById('guestbook-list');
+  var submitBtn = form.querySelector('button[type="submit"]');
+
+  function escapeHtml(str){
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function formatDate(iso){
+    var d = new Date(iso);
+    var pad = function(n){ return String(n).padStart(2, '0'); };
+    return d.getFullYear() + '.' + pad(d.getMonth() + 1) + '.' + pad(d.getDate());
+  }
+
+  function renderEntries(entries){
+    if (!entries || entries.length === 0) {
+      listEl.innerHTML = '<li class="guestbook-empty">아직 남겨진 인사가 없어요. 첫 번째 방문자가 되어보세요.</li>';
+      return;
+    }
+    listEl.innerHTML = entries.map(function(entry){
+      return '<li><div class="entry-head"><span class="entry-name">' + escapeHtml(entry.name) +
+        '</span><span class="entry-date">' + formatDate(entry.created_at) + '</span></div>' +
+        '<p>' + escapeHtml(entry.message) + '</p></li>';
+    }).join('');
+  }
+
+  async function loadEntries(){
+    var { data, error } = await client
+      .from('guestbook')
+      .select('name,message,created_at')
+      .order('created_at', { ascending: false })
+      .limit(50);
+
+    if (error) {
+      listEl.innerHTML = '<li class="guestbook-empty">방명록을 불러오지 못했습니다.</li>';
+      return;
+    }
+    renderEntries(data);
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    submitBtn.disabled = true;
+    status.classList.remove('is-error');
+    status.textContent = '남기는 중...';
+
+    var name = form.name.value.trim();
+    var message = form.message.value.trim();
+
+    var { error } = await client.from('guestbook').insert({
+      name: name,
+      message: message
+    });
+
+    if (error) {
+      status.classList.add('is-error');
+      status.textContent = '등록에 실패했습니다. 잠시 후 다시 시도해주세요.';
+      submitBtn.disabled = false;
+      return;
+    }
+
+    status.textContent = '방명록에 남겼습니다. 감사합니다.';
+    form.reset();
+    submitBtn.disabled = false;
+    loadEntries();
+  });
+
+  loadEntries();
+})();
+</script>
